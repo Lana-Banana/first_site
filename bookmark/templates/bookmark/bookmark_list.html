@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}List{% endblock %}
+
+{% block content %}
+<table class="table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Site</td>
+                <td>URL</td>
+                <td>Modify</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!--//
+            { % % } : 기능 문법 (for, if..)
+            { { } } : 변수 출력
+            object_list : 장고에서 뷰를 빌려썼다면 이 변수로 써야 한다.
+            // -->
+            {% for bookmark in object_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td> <!-- index -->
+                    <td>{{ bookmark.site_name}}</td>
+                    <td><a href="{{bookmark.url}}" target="_blank">{{ bookmark.url }}</a></td>
+                    <td><a href="javascript:;" class="btn btn-success btn-sm">modify</a></td>
+                    <td><a href="javascript:;" class="btn btn-danger btn-sm">delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
